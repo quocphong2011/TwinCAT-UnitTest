@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MotorControl" Id="{baa4aa47-6872-434b-b7d0-1f178110ceec}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControl
+VAR_INPUT
+	Button1 : BOOL;
+	Button2 : BOOL;
+	Sensor : BOOL;
+END_VAR
+VAR_OUTPUT
+	Motor : BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Motor := IsMotorTurnedOn(Button1, Button2, Sensor);]]></ST>
+    </Implementation>
+    <Method Name="IsMotorTurnedOn" Id="{458f2903-6a68-4aab-b843-bb1060e63ef3}">
+      <Declaration><![CDATA[METHOD IsMotorTurnedOn : BOOL
+VAR_INPUT
+	button1 : BOOL;
+	button2 : BOOL;
+	sensor : bool;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IsMotorTurnedOn := button1 AND button2 AND NOT sensor;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_MotorControl">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MotorControl.IsMotorTurnedOn">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

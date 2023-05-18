@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{8af06183-f6c7-4a59-b72a-18871108f6e8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	MotorControl : FB_MotorControl;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MotorControl( button1 := GVL_IO.Button1,
+	          button2 := GVL_IO.Button2,
+	          sensor := GVL_IO.Sensor,
+			  Motor => GVL_IO.Motor);
+			  ]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

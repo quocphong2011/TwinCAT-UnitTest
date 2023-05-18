@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MotorControl_Test" Id="{5cd1b32c-e14b-4bf7-a757-fc4cfcd8348d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControl_Test EXTENDS FB_TestSuite
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TestWhenSensorIsOff();
+TestWhenButton1Off();]]></ST>
+    </Implementation>
+    <Method Name="TestWhenButton1Off" Id="{943300ca-156f-47eb-824f-66d8ca86ce3e}">
+      <Declaration><![CDATA[METHOD TestWhenButton1Off
+VAR_INPUT
+END_VAR
+VAR
+	motorControl : FB_MotorControl;
+	result : BOOL;
+	expected_result : BOOL := TRUE;
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestWhenButton1Off');
+
+motorControl( Button1 := FALSE, Button2 := TRUE, Sensor := FALSE, Motor => result);
+
+
+AssertEquals(Expected := expected_result,
+             Actual := result,
+             Message := 'The output is not correct' );
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestWhenSensorIsOff" Id="{6db6ec2f-07f1-4bbb-8a1c-16284cff6942}">
+      <Declaration><![CDATA[METHOD TestWhenSensorIsOff
+VAR_INPUT
+END_VAR
+VAR
+	motorControl : FB_MotorControl;
+	result : BOOL;
+	expected_result : BOOL := TRUE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestWhenSensorIsOff');
+
+motorControl( Button1 := TRUE, Button2 := TRUE, Sensor := FALSE, Motor => result);
+ 
+AssertEquals(Expected := expected_result,
+             Actual := result,
+             Message := 'The output is not correct' );
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_MotorControl_Test">
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MotorControl_Test.TestWhenButton1Off">
+      <LineId Id="5" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="13" Count="4" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MotorControl_Test.TestWhenSensorIsOff">
+      <LineId Id="5" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
